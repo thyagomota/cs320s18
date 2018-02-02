@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.net.*;
-import java.util.Arrays;
 
 public class UDPEchoServer {
 
@@ -8,10 +7,8 @@ public class UDPEchoServer {
     static final int BUFFER_SIZE = 1024;
 
     public static void main(String[] args) throws IOException {
-        InetAddress serverAddress = InetAddress.getLocalHost();
-        System.out.println(serverAddress);
-        DatagramSocket datagramSocket = new DatagramSocket(PORT, serverAddress);
-        System.out.println(UDPEchoServer.class + " listening on " + serverAddress);
+        DatagramSocket datagramSocket = new DatagramSocket(PORT);
+        System.out.println(UDPEchoServer.class + " listening on " + datagramSocket.getLocalAddress());
         byte buffer[] = new byte[BUFFER_SIZE];
         DatagramPacket datagramPacket = new DatagramPacket(buffer, BUFFER_SIZE);
         datagramSocket.receive(datagramPacket);
