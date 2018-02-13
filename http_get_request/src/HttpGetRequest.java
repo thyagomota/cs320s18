@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 class HttpGetRequest {
 
-    static final String USER_AGENT = "Mozilla/5.0";
+    //static final String USER_AGENT = "Mozilla/5.0";
+    static final String USER_AGENT = "Mozilla/5.0 (X11; U; Linux i586; en-US; rv:1.7.3) Gecko/20040924 Epiphany/1.4.4 (Ubuntu)";
 
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
@@ -26,6 +27,11 @@ class HttpGetRequest {
         System.out.println("Sending 'GET' request to URL : " + url);
         int responseCode = httpConn.getResponseCode();
         System.out.println("Response Code : " + responseCode);
+        // check for redirect...
+        if (responseCode == 301) {
+            String newUrl = httpConn.getHeaderField("Location");
+            System.out.println("Redirect: " + newUrl);
+        }
         Scanner sc = new Scanner(httpConn.getInputStream());
         while (sc.hasNext()) {
             String line = sc.nextLine();
