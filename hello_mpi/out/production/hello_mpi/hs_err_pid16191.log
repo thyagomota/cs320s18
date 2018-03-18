@@ -1,0 +1,135 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0xa) at pc=0x00007fff52f8cf49, pid=16191, tid=5891
+#
+# JRE version: Java(TM) SE Runtime Environment (9.0+11) (build 9.0.1+11)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (9.0.1+11, mixed mode, tiered, compressed oops, g1 gc, bsd-amd64)
+# Problematic frame:
+# C  [libsystem_platform.dylib+0x4f49]  _platform_memmove$VARIANT$Haswell+0x29
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Djava.library.path=/usr/local/lib HelloMpi
+
+Host: MacBookPro11,1 x86_64 2800 MHz, 4 cores, 8G, Darwin 17.4.0
+Time: Sun Mar 18 14:51:39 2018 EDT elapsed time: 1 seconds (0d 0h 0m 1s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007ff49d80c800):  JavaThread "main" [_thread_in_vm, id=5891, stack(0x000070000d28b000,0x000070000d38b000)]
+
+Stack: [0x000070000d28b000,0x000070000d38b000],  sp=0x000070000d38a610,  free space=1021k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libsystem_platform.dylib+0x4f49]  _platform_memmove$VARIANT$Haswell+0x29
+V  [libjvm.dylib+0x3e40be]  jni_GetCharArrayRegion+0x13a
+C  [libmpi_java.20.dylib+0xc27f]  ompi_java_getReadPtr+0xcf
+C  [libmpi_java.20.dylib+0x1500]  Java_mpi_Comm_send+0x40
+j  mpi.Comm.send(JLjava/lang/Object;ZIIJIII)V+0
+j  mpi.Comm.send(Ljava/lang/Object;ILmpi/Datatype;II)V+67
+j  HelloMpi.run()V+42
+j  HelloMpi.main([Ljava/lang/String;)V+12
+v  ~StubRoutines::call_stub
+V  [libjvm.dylib+0x3a270d]  JavaCalls::call_helper(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x2b5
+V  [libjvm.dylib+0x3dbb79]  jni_invoke_static(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*)+0x12d
+V  [libjvm.dylib+0x3de527]  jni_CallStaticVoidMethod+0x18d
+C  [java+0x4dfa]  JavaMain+0xb8d
+C  [libsystem_pthread.dylib+0x36c1]  _pthread_body+0x154
+C  [libsystem_pthread.dylib+0x356d]  _pthread_body+0x0
+C  [libsystem_pthread.dylib+0x2c5d]  thread_start+0xd
+C  0x0000000000000000
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  mpi.Comm.send(JLjava/lang/Object;ZIIJIII)V+0
+j  mpi.Comm.send(Ljava/lang/Object;ILmpi/Datatype;II)V+67
+j  HelloMpi.run()V+42
+j  HelloMpi.main([Ljava/lang/String;)V+12
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 10 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x0000000748000000
+
+Register to memory mapping:
+
+RAX=0x00007ff49d8f4000 is an unknown value
+RBX=0x00007ff49d80c800 is a thread
+RCX=0x0000000000efeb00 is an unknown value
+RDX=0x0000000001000000 is an unknown value
+RSP=0x000070000d38a610 is pointing into the stack for thread: 0x00007ff49d80c800
+RBP=0x000070000d38a610 is pointing into the stack for thread: 0x00007ff49d80c800
+RSI=
+[error occurred during error reporting (printing register info), id 0xa]
+
+Registers:
+RAX=0x00007ff49d8f4000, RBX=0x00007ff49d80c800, RCX=0x0000000000efeb00, RDX=0x0000000001000000
+RSP=0x000070000d38a610, RBP=0x000070000d38a610, RSI=0x0000000748000000, RDI=0x00007ff49d9f5500
+R8 =0x00007ff49d8f4000, R9 =0x00007ff49d8f4000, R10=0x00007fff8bd30d98, R11=0x00007fed559f5500
+R12=0x0000000000000001, R13=0x00007ff49d8f4000, R14=0x000070000d38a868, R15=0x0000000001000000
+RIP=0x00007fff52f8cf49, EFLAGS=0x0000000000010206, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x000070000d38a610)
+0x000070000d38a610:   000070000d38a690 00000001095e40be
+0x000070000d38a620:   00007ff49d80ca18 0000000000000000
+0x000070000d38a630:   00007ff49d8f4000 00007ff49d80c800
+0x000070000d38a640:   0000000000000000 000000012d42092c
+0x000070000d38a650:   00007ff49d80ca18 00007ff49d80c800
+0x000070000d38a660:   00007ff49d80c800 00007ff49d80ca18
+0x000070000d38a670:   0000000000000002 00007ff49d8f4000
+0x000070000d38a680:   000070000d38a720 000070000d38a868
+0x000070000d38a690:   000070000d38a6e0 000000012d41f27f
+0x000070000d38a6a0:   0000000000000000 0000000000000002
+0x000070000d38a6b0:   000000000d38a868 00007ff49d80ca18
+0x000070000d38a6c0:   000070000d38a868 0000000000000001
+0x000070000d38a6d0:   0000000000000000 000000012d4f4930
+0x000070000d38a6e0:   000070000d38a750 000000012d414500
+0x000070000d38a6f0:   0000000000000001 000000012d4e9920
+0x000070000d38a700:   0000000000000002 00007ff49d80c800
+0x000070000d38a710:   000000012b55b220 00007ff49ce4de80
+0x000070000d38a720:   00007ff49d80c800 000000012b55b220
+0x000070000d38a730:   0000000000000000 000000012b55b218
+0x000070000d38a740:   000070000d38a880 00007ff49d80c800
+0x000070000d38a750:   000070000d38a808 000000011584bdb5
+0x000070000d38a760:   00007ff400000001 000000012d4e9920
+0x000070000d38a770:   0000700000000002 0000000100000000
+0x000070000d38a780:   00007ff400000000 00007ff49d80c800
+0x000070000d38a790:   000000012b55b220 000070000d38a880
+0x000070000d38a7a0:   000070000d38a808 000000011584bb0a
+0x000070000d38a7b0:   0000000000000000 000000011584bad3
+0x000070000d38a7c0:   000070000d38a7c0 000000012b55b218
+0x000070000d38a7d0:   000070000d38a880 000000012b598028
+0x000070000d38a7e0:   0000000000000000 0000000747e92858
+0x000070000d38a7f0:   000000012b55b220 0000000000000000
+0x000070000d38a800:   000070000d38a828 000070000d38a8d0 
+
+Instructions: (pc=0x00007fff52f8cf49)
+0x00007fff52f8cf29:   f3 48 89 f8 49 39 d3 72 1b 48 83 fa 60 76 2f 48
+0x00007fff52f8cf39:   81 fa 00 40 00 00 0f 82 cb 00 00 00 48 89 d1 fc
+0x00007fff52f8cf49:   f3 a4 5d c3 48 39 fe 74 f9 48 01 d6 48 01 d7 48
+0x00007fff52f8cf59:   83 fa 60 0f 82 8c 01 00 00 e9 a9 01 00 00 48 83 
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007ff49e88d800 JavaThread "SIGTERM handler" daemon [_thread_blocked, id=22787, stack(0x000070000ead6000,0x000070000ebd6000)]
+  0x00007ff49d80b800 JavaThread "Service Thread" daemon [_thread_blocked, id=40963, stack(0x000070000e7ca000,0x000070000e8ca000)]
+  0x00007ff49e02b000 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=41475, stack(0x000070000e6c7000,0x000070000e7c7000)]
+  0x00007ff49d0c2000 JavaThread "Sweeper thread" daemon [_thread_blocked, id=41731, stack(0x000070000e5c4000,0x000070000e6c4000)]
+  0x00007ff49d871800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=42243, stack(0x000070000e4c1000,0x000070000e5c1000)]
+  0x00007ff49d0c1000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=42755, stack(0x000070000e3be000,0x000070000e4be000)]
+  0x00007ff49d04f000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=43267, stack(0x000070000e2bb000,0x000070000e3bb000)]
+  0x00007ff49d04e800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=16135, stack(0x000070000e1b8000,0x000070000e2b8000)]
+  0x00007ff49d869000 JavaThread "Finalizer" daemon [_thread_blocked, id=17667, stack(0x000070000e0b5000,0x000070000e1b5000)]
+  0x00007ff49d868000 JavaThread "Reference Handler" daemon [_thread_blocked, id=18179, stack(0x000070000dfb2000,0x000070000e0b2000)]
+=>0x00007ff49d80c800 JavaThread "main" [_thread_in_vm, id=5891, stack(0x000070000d28b000,0x000070000d38b000)]
+
+Other Threads:
+  0x00007ff49e003800 VMThread "VM Thread" [stack: 0x000070000deaf000,0x000070000dfaf000] [id=13827]
+  0x00007ff49e033800 WatcherThread [stack: 0x000070000e8cd000,0x000070000e9cd000] [id=40451]
+  
