@@ -27,16 +27,17 @@ public class GamePig {
         while (true) {
             int die = rollDie();
             System.out.println("Die: " + die);
+
+            String msg = player.toString() + "\n" + "You got a " + die + "\n";
             if (die == 1) {
                 points = 0;
+                JOptionPane.showMessageDialog(null, msg + "You got pigged!");
                 break;
             }
-            else {
-                points += die;
-                int choice = JOptionPane.showConfirmDialog(null, player.toString() + "\n"+ "You have " + points + " points in this round. Roll die again? ");
-                if (choice != 0)
-                    break;
-            }
+            points += die;
+            int choice = JOptionPane.showConfirmDialog(null, msg + "You have " + points + " points in this round. Roll die again? ");
+            if (choice != 0)
+                break;
         }
         return points;
     }
@@ -86,8 +87,23 @@ public class GamePig {
                                 lastOne = false;
                                 break;
                             }
-                        if (lastOne)
+                        if (lastOne) {
                             game.setRound(game.getRound() + 1);
+
+                            // check if reached the max number of rounds
+                            if (game.getRound() > Configuration.MAX_ROUNDS)
+                                game.setStatus(Game.GAME_ENDED);
+                            else {
+                                boolean winner = false;
+                                for (Player p : game.getPlayers())
+                                    if (p.getPoints() >= Configuration.MAX_POINTS) {
+                                        winner = true;
+                                        break;
+                                    }
+                                if (winner)
+                                    game.setStatus(Game.GAME_ENDED);
+                            }
+                        }
                     }
                 }
                 space.write(game);
