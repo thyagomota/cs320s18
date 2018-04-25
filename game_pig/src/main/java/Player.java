@@ -62,4 +62,10 @@ public class Player implements Serializable {
                 ", first=" + first +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Player other = (Player) obj;
+        return name.equals(other.getName());
+    }
 }
