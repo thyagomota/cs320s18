@@ -1,11 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="mersenne">
     <output-path>$PROJECT_DIR$/out/artifacts/mersenne</output-path>
-    <root id="archive" name="mersenne.jar">
-      <element id="library" level="project" name="mpi" />
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      </element>
+    <root id="archive" name="main.jar">
+      <element id="module-output" name="main" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../util/openmpi-2.0.4/ompi/mpi/java/java/mpi.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
